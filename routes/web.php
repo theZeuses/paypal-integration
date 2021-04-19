@@ -33,10 +33,10 @@ Route::get('/paypal-setup', function(){
         ],
         'form-params' => [
             "tracking_id" => $user->id,
-            "email" => $user->email,
+            // "email" => $user->email,
             "partner_config_override" => [
-                "partner_logo_url" => "https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg",
-                "return_url" => "localhost:8000/",
+                // "partner_logo_url" => "https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg",
+                "return_url" => "https://estoreshaper.com/signup",
                 "return_url_description" => "the url to return the merchant after the paypal onboarding process.",
                 // "action_renewal_url" => "https://testenterprises.com/renew-exprired-url",
                 "show_add_credit_card" => true
@@ -72,3 +72,8 @@ Route::get('/paypal-setup', function(){
     $links = json_decode($response->getBody());
     return redirect($links->links[1]->href);
 });
+
+Route::get('/pay', function(){
+  return view('client.pay');
+});
+
